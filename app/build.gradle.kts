@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
-    alias(libs.plugins.kotlin.compose)
+    //alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -17,18 +17,18 @@ android {
         minSdk = 34
         targetSdk = 36
         versionCode = 1
-        versionName = "1.0"
+        versionName = "@string/app_version"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         debug {
-            isMinifyEnabled = false
+            isMinifyEnabled = false  //debugueable sin ofuscacion pruebas
             isDebuggable = true
         }
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = true  //Ofuscacion Activa y que no sea Debugueable produccion
             isDebuggable = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -47,40 +47,39 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
 
-    // Glide (para cargar sprites)
-    implementation("com.github.bumptech.glide:glide:4.15.1")
-    implementation(libs.androidx.room.common.jvm)
-    implementation(libs.androidx.room.ktx)
-    kapt("com.github.bumptech.glide:compiler:4.15.1")
+    // Retrofit + Gson
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
 
-    // Retrofit (core)
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-
-    // Converters
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
-    // OkHttp (con BOM para alinear versiones)
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:5.1.0"))
+    // OkHttp 4.x (compatible con Kotlin 1.9)
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:5.3.0"))
     implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.3.0")
 
-    // Gson
-    implementation("com.google.code.gson:gson:2.10.1")
+    // Hilt (versión compatible)
+    implementation("com.google.dagger:hilt-android:2.57.2")
+    kapt("com.google.dagger:hilt-android-compiler:2.57.2")
+    implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
 
-    // Hilt
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    implementation("com.google.dagger:hilt-android:2.57")
-    kapt("com.google.dagger:hilt-android-compiler:2.57")
+    // Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.8.3")
 
-    // Circle ImageView
+    // Glide
+    implementation("com.github.bumptech.glide:glide:5.0.5")
+    kapt("com.github.bumptech.glide:compiler:5.0.5")
+
+    // resto de deps...
     implementation("de.hdodenhof:circleimageview:3.1.0")
-
-    // Loading Button
     implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
-
-    // Lottie
     val lottieVersion = "3.4.0"
     implementation("com.airbnb.android:lottie:$lottieVersion")
 

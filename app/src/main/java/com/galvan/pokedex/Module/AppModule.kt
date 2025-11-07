@@ -1,7 +1,9 @@
 package com.galvan.pokedex.Module
 
 import android.content.Context
+import com.galvan.pokedex.Data.Domain.AppDataStore.AppDataStore
 import com.galvan.pokedex.Database.SQL.DatabaseRoom.DatabaseRoom
+import com.galvan.pokedex.Database.Web.PokemonWebRepository.PokemonWebRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +24,15 @@ object AppModule {
         return DatabaseRoom(context)
     }
 
+    @Provides
+    @Singleton
+    fun appDataStore(databaseRoom: DatabaseRoom,pokemonWebRepository: PokemonWebRepository): AppDataStore {
+        return AppDataStore(databaseRoom,pokemonWebRepository)
+    }
 
-
+    @Provides
+    fun pokemonWebRepository(): PokemonWebRepository {
+        return PokemonWebRepository()
+    }
 
 }

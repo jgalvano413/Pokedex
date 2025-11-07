@@ -7,4 +7,58 @@
     android:layout_height="match_parent"
     tools:context=".Activitys.SplashActivity.SplashActivity">
 
+    <LinearLayout
+        android:id="@+id/loadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/wave_background"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/logo_app"/>
+
+
+        <ProgressBar
+            android:id="@+id/loading_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:layout_marginTop="220dp"
+            android:indeterminate="true"
+            android:indeterminateTint="?attr/colorOnSurface" />
+
+        <TextView
+            android:id="@+id/processView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:text="@string/loading_label"
+            android:gravity="center"/>
+
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/splashLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_app"/>
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

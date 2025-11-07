@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="app_version">Pokedex</string>
+
+
+
+    <!-- SplashActivity-->
+    <string name="loading_label">Cargando espere un momento..</string>
+    <string name="error_label">Error de Descarga</string>
+    <string name="download_label">Descargando Informacion...</string>
+    <string name="database_label">Guardando Datos, espera un momento...</string>
+    <string name="error_label_message">Hubo un problema con la aplicación. Inténtelo de nuevo más tarde. Si el problema persiste, por favor, contacte con soporte.</string>
+    <string name="btn_label">Aceptar</string>
+
 </resources>
